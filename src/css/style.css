@@ -121,7 +121,6 @@ li {
 .popup__inp input:not(:last-child) {
   margin-right: 10px;
 }
-
 .app-wrp {
   background-color: #fff;
   height: 400px;
