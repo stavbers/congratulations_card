@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('body')
-  const checkInpDay = value => value > 0 && value < 32 ? true : false
-  const checkInpMonth = value => value > 0 && value < 13 ? true : false
-  const checkInpYear = value => value > 1906 && value < new Date().getFullYear() ? true : false
+  const checkInpDay = value => value.trim() > 0 && value.trim() < 32  ? true : false
+  const checkInpMonth = value => value.trim() > 0 && value.trim() < 13  ? true : false
+  const checkInpYear = value => value.trim() > 1906 && value.trim() < new Date().getFullYear() ? true : false
   const removeElem = (el) => el.forEach(el => el.remove())
   const clearInp = (day, month, year) => {
     day.value = '';
     month.value = '';
-    year.value = ''
-  }
-  const checkInputValue = (day, month, year) => {
-    checkInpDay(day.value) && checkInpMonth(month.value) && checkInpYear(year.value) ? removeElem([document.querySelector('#overlay'), document.querySelector('.popup')]) : clearInp(day, month, year)
+    year.value = '' }
+
+  const checkInputValue = (day, month, year) => { 
+    (checkInpDay(day.value) && checkInpMonth(month.value) && checkInpYear(year.value)) ? [removeElem([document.querySelector('#overlay'), document.querySelector('.popup')]), addElem(app, body.querySelector('#App'))] : [clearInp(day, month, year), false]
   }
   const createElem = elem => `${elem}`
   const addElem = (elem, out = body) => out.insertAdjacentHTML('beforeend', elem)
@@ -45,11 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const inpMon = document.querySelector('#p-inpMon')
     const inpYear = document.querySelector('#p-inpY')
     checkInputValue(inpDay, inpMon, inpYear)
-    addElem(app, body.querySelector('#App'))
   })
 
   document.addEventListener('keydown', (e)=> {
-    // console.log(e.code)
   e.code == 'Escape' && document.querySelector('#p-inpY')
   ? [removeElem([overlayEl, popupEl]), addElem(app, body.querySelector('#App'))]
   : false
