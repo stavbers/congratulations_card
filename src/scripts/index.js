@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>`)
   addElem(overlay)
   addElem(popup)
+  const overlayEl = document.querySelector('#overlay')
+  const popupEl = document.querySelector('.popup')
+
   document.querySelector('#p-inpBtn').addEventListener('click', () => {
     const inpDay = document.querySelector('#p-inpDay')
     const inpMon = document.querySelector('#p-inpMon')
@@ -45,6 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
     addElem(app, body.querySelector('#App'))
   })
 
+  document.addEventListener('keydown', (e)=> {
+    // console.log(e.code)
+  e.code == 'Escape' && document.querySelector('#p-inpY')
+  ? [removeElem([overlayEl, popupEl]), addElem(app, body.querySelector('#App'))]
+  : false
+})
+  overlayEl.addEventListener('click', (e)=> {
+  removeElem([overlayEl, popupEl])
+  addElem(app, body.querySelector('#App'))
+})
 
 })
 
@@ -52,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 let date = new Date("1,1,2023")
-
+console.log(date)
 // let CountDay = document.getElementById("Days")
 // let CountHour = document.getElementById("Hours")
 // let CountMinutes = document.getElementById("Minutes")
