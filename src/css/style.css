@@ -29,7 +29,7 @@ li {
 }
 #overlay {
   position: absolute;
-  display: none;
+  /* display: none; */
   width: 100%;
   height: 100%;
   top: 0;
@@ -50,18 +50,124 @@ li {
 }
 
 .bg {
-background: #DA505C;
-background: -webkit-linear-gradient(top left, #DA505C, #F1B083);
-background: -moz-linear-gradient(top left, #DA505C, #F1B083);
-background: linear-gradient(to bottom right, #DA505C, #F1B083);
-background-repeat: no-repeat;
-background-size: cover;
+  background: #DA505C;
+  background: -webkit-linear-gradient(top left, #DA505C, #F1B083);
+  background: -moz-linear-gradient(top left, #DA505C, #F1B083);
+  background: linear-gradient(to bottom right, #DA505C, #F1B083);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.popup {
+  position: absolute;
+  top: 38%;
+  left: 39%;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  -webkit-box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.53);
+  box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.53);
+  padding: 20px 15px;
+  text-align: center;
+  border-radius: 7px;
+  width: 320px;
+  max-height: 100px;
+  font-size: 16px;
+  z-index: 3;
+}
+
+.popup__title {
+  position: relative;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.735);
+  margin-bottom: 19px;
+}
+
+.popup__title::before {
+  content: '';
+  position: absolute;
+  background: url(../images/calend.png);
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  top: -4px;
+  left: 0;
+}
+
+.popup__title::after {
+  content: '';
+  position: absolute;
+  background: url(../images/img-bday.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+  top: -10px;
+  right: 0;
+}
+
+.popup__inp {
+  display: flex;
+  justify-content: center;
+}
+
+.popup__inp input {
+  width: 70px;
+  padding: 3px 8px;
+  color: rgba(0, 0, 0, 0.735);
+  text-align: center;
+}
+
+.popup__inp input:not(:last-child) {
+  margin-right: 10px;
 }
 
 .app-wrp {
   background-color: #fff;
   height: 400px;
+  min-width: 300px;
+  padding: 15px 20px;
+  border-radius: 7px;
+  -webkit-box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.53);
+  box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.53);
+  }
+
+  .app-wrp__title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+
+  .app-wrp__countdown {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+.app-wrp__subtitle {
+  text-align: right;
+  text-transform: uppercase;
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 5px;
 }
-.app-popup {
-  z-index: 3;
+
+.app-wrp__note {
+  position: relative;
+}
+
+.saved {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: rgba(0, 0, 0, 0.735);
+  display: none;
+}
+
+#felic-text {
+  min-width: 320px;
+  max-width: 1000px;
+  min-height: 160px;
+  max-height: 270px;
 }
