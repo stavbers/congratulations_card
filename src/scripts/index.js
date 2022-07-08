@@ -3,9 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkInpDay = value => value > 0 && value < 32 ? true : false
   const checkInpMonth = value => value > 0 && value < 13 ? true : false
   const checkInpYear = value => value > 1906 && value < new Date().getFullYear() ? true : false
-  const removeElem = (el)=> el.forEach(el => el.remove())
-  const clearInp = (day, month, year) => {day.value =''; month.value =''; year.value =''}
-  const checkInputValue = (day, month, year)=> {
+  const removeElem = (el) => el.forEach(el => el.remove())
+  const clearInp = (day, month, year) => {
+    day.value = '';
+    month.value = '';
+    year.value = ''
+  }
+  const checkInputValue = (day, month, year) => {
     checkInpDay(day.value) && checkInpMonth(month.value) && checkInpYear(year.value) ? removeElem([document.querySelector('#overlay'), document.querySelector('.popup')]) : clearInp(day, month, year)
   }
   const createElem = elem => `${elem}`
@@ -21,33 +25,31 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type = "button" id = "p-inpBtn"value = "Сontinue" >
           </div>
         </div>`)
-
+  const app = createElem(`
+        <div class="app-wrp">
+          <h2 class="app-wrp__title">Birthday Countdown</h2>
+          <p class="app-wrp__countdown">Осталось 24 дня 40 часов 59 минут и 6 сек</p>
+          <h4 class="app-wrp__subtitle">text felicitation</h4>
+          <div class="app-wrp__note">
+            <div class="saved">Saved...</div>
+            <textarea name="text" id="felic-text" cols="30" rows="10"></textarea>
+            </div>
+          </div>`)
   addElem(overlay)
   addElem(popup)
-  document.querySelector('#p-inpBtn').addEventListener('click', ()=> {
+  document.querySelector('#p-inpBtn').addEventListener('click', () => {
     const inpDay = document.querySelector('#p-inpDay')
     const inpMon = document.querySelector('#p-inpMon')
     const inpYear = document.querySelector('#p-inpY')
     checkInputValue(inpDay, inpMon, inpYear)
-
+    addElem(app, body.querySelector('#App'))
   })
 
 
-
-
-
-
-  // function checkInputValue(day, month, year){
-  // if(checkInpDay(day.value) && checkInpMonth(month.value) && checkInpYear(year.value))  {
-  //   document.querySelector('#overlay').remove()
-  //   document.querySelector('.popup').remove()
-  // } else {
-  //   console.log(clearInp(day, month, year))
-  // }
-
-  // }
-
 })
+
+
+
 
 let date = new Date("1,1,2023")
 
@@ -66,7 +68,6 @@ function updateTime() {
   min = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   sec = Math.floor((distance % (1000 * 60)) / 1000);
 
-  // console.log(day, hour, min, sec);
 
 
 }
