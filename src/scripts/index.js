@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     year.value = '' }
 
   const checkInputValue = (day, month, year) => { 
-    (checkInpDay(day.value) && checkInpMonth(month.value) && checkInpYear(year.value)) ? [removeElem([document.querySelector('#overlay'), document.querySelector('.popup')]), addElem(app, body.querySelector('#App'))] : [clearInp(day, month, year), false]
+    (checkInpDay(day.value) && checkInpMonth(month.value) && checkInpYear(year.value))
+     ? [removeElem([document.querySelector('#overlay'), document.querySelector('.popup')]), addElem(app, body.querySelector('#App'))] 
+     : [clearInp(day, month, year), false]
   }
   const createElem = elem => `${elem}`
   const addElem = (elem, out = body) => out.insertAdjacentHTML('beforeend', elem)
@@ -44,7 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const inpDay = document.querySelector('#p-inpDay')
     const inpMon = document.querySelector('#p-inpMon')
     const inpYear = document.querySelector('#p-inpY')
+    // const cd = document.querySelector('.app-wrp__countdown')
+    // const dateArr = []
     checkInputValue(inpDay, inpMon, inpYear)
+    countDown
   })
 
   document.addEventListener('keydown', (e)=> {
@@ -57,28 +62,32 @@ document.addEventListener('DOMContentLoaded', () => {
   addElem(app, body.querySelector('#App'))
 })
 
+const countDown = (arr)=> {
+  const date = new Date('12,24,1991')
+}
+
+
 })
 
+// если день и месяц больше текущего то что-то делать
 
 
+const nowDate = new Date()
+console.log(date.getTime())
+console.log(nowDate.getTime())
+// console.log(date.getMonth())
+// setInterval(countDown, 1000)
 
-let date = new Date("1,1,2023")
-console.log(date)
-// let CountDay = document.getElementById("Days")
-// let CountHour = document.getElementById("Hours")
-// let CountMinutes = document.getElementById("Minutes")
-// let CountSeconds = document.getElementById("Seconds")
-let Int = setInterval(updateTime, 1000)
-
-function updateTime() {
+function countDown() {
   let Now = new Date().getTime()
   let distance = date - Now
-  let day, hour, min, sec
+  let month, day, hour, min, sec
+  month = Math.floor(diff / 1000 / 60 / 60 / 31) % 12
   day = Math.floor(distance / (1000 * 60 * 60 * 24));
   hour = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   min = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   sec = Math.floor((distance % (1000 * 60)) / 1000);
 
-
+console.log(day,hour, min, sec)
 
 }
