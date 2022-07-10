@@ -30,20 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="app-wrp"> 
   <h2 class="app-wrp__title">Счетчик до даты дня рождения</h2>
   <div class="app-wrp__countdown countdown-wrp">
-    <p class="countdown-wrp__age">Вам исполнится <span>31</span> год</p>
+    <p class="countdown-wrp__age">Вам исполнится <span>0</span> лет</p>
     <h2 class="countdown-wrp__title">До дня рождения осталось:</h2>
     <div class="countdown-wrp__inner wrp-inner">
       <div class="wrp-inner__left">
-        <p class="countdown-wrp__month">5 месяцев</p>
-        <p class="countdown-wrp__workDay">98 рабочих дней</p>
-        <p class="countdown-wrp__days">137 дней</p>
-        <p class="countdown-wrp__minutes">51 минута</p>
+        <p class="countdown-wrp__month">0 месяцев</p>
+        <p class="countdown-wrp__workDay">0 рабочих дней</p>
+        <p class="countdown-wrp__days">0 дней</p>
+        <p class="countdown-wrp__minutes">0 минут</p>
       </div>
       <div class="wrp-inner__right">
-        <p class="countdown-wrp__week">19.5 недель</p>
-        <p class="countdown-wrp__weekend">39 выходных дней</p>
-        <p class="countdown-wrp__hours">17 часов</p>
-        <p class="countdown-wrp__seconds">52 секунды</p>
+        <p class="countdown-wrp__week">0 недель</p>
+        <p class="countdown-wrp__weekend">0 выходных дней</p>
+        <p class="countdown-wrp__hours">0 часов</p>
+        <p class="countdown-wrp__seconds">0 секунд</p>
       </div>
     </div>
   </div>
@@ -66,12 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   document.addEventListener('keydown', (e) => {
-    e.code == 'Escape' && document.querySelector('#p-inpY') ? [removeElem([overlayEl, popupEl]), addElem(app, body.querySelector('#App'))] :
+    e.code == 'Escape' && document.querySelector('#p-inpY') ? [removeElem([overlayEl, popupEl]), addElem(app, body.querySelector('#App')),getStorageData()] :
       false
   })
   overlayEl.addEventListener('click', (e) => {
     removeElem([overlayEl, popupEl])
     addElem(app, body.querySelector('#App'))
+    getStorageData()
   })
 
   const getAge = (day, month, year) => {
@@ -83,10 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const html = document.querySelector('.countdown-wrp__age')
     html.textContent = `Вам исполнится ${age} ${num_word(age, ['год', 'года', 'лет'])}`
     if (month < new Date().getMonth()) dobnow = new Date(today.getFullYear() + 1, dob.getMonth(), dob.getDate())
-    setInterval(countTimer.bind(dobnow), 1000);
+    setInterval(countTimer.bind(dobnow), 1000)
+    addStorage(age, 'age')
+    addStorage(dobnow, 'dobnow')
   }
-
-
 
   function countTimer() {
     const monthOut = document.querySelector('.countdown-wrp__month')
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let minutes = milsTime > 0 ? Math.floor(milsTime / 1000 / 60) % 60 : 0
     let seconds = milsTime > 0 ? Math.floor(milsTime / 1000) % 60 : 0
     monthOut.textContent = `${month} ${num_word(month, ['месяц', 'месяца', 'месяцев'])}`
-    weekOut.textContent = `${num_word(week.toFixed(), ['недели', 'неделя', 'недель'])} ${week.toFixed(1)}`
+    weekOut.textContent = `${num_word(week.toFixed(), ['недели', 'неделя', 'недель'])} ${week.toFixed('')}`
     weekendOut.textContent = `${num_word(weekend.toFixed(), ['выходных дней', 'выходных дней', 'выходных дней'])} ${weekend.toFixed()}`
     workDayOut.textContent = `${workDay.toFixed()} ${num_word(workDay.toFixed(), ['рабочих дней', 'рабочих дней', 'рабочих дней'])}`
     daysOut.textContent = `${days} ${num_word(days, ['день', 'дня', 'дней'])}`
@@ -119,5 +120,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const num_word = (number, titles) => {
     cases = [2, 0, 1, 1, 1, 2];
     return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+  }
+
+  function addStorage(id, datte){
+    localStorage.setItem(datte, id)
+    getStorageData()
+  }
+  function getStorageData(){
+    if(localStorage.getItem('age')) {
+      const html = document.querySelector('.countdown-wrp__age')
+      html.textContent = `Вам исполнится ${localStorage.getItem('age')} ${num_word(localStorage.getItem('age'), ['год', 'года', 'лет'])}`
+    } 
+    if(localStorage.getItem('dobnow')) {
+      setInterval(countTimer.bind(localStorage.getItem('dobnow')), 1000)
+    } 
   }
 })
