@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlay = createElem('<div id="overlay"></div>')
   const popup = createElem(`
         <div class="popup ">
-          <h4 class="popup__title">Please enter date of birth</h4>
+          <h4 class="popup__title">Пожалуйста укажите дату своего рождения</h4>
           <div class="popup__inp">
-            <input type="text" id="p-inpDay" placeholder="Day">
-            <input type="text" id="p-inpMon" placeholder="Month">
-            <input type="text" id="p-inpY" placeholder="Year">
-            <input type = "button" id = "p-inpBtn"value = "Сontinue" >
+            <input type="text" id="p-inpDay" placeholder="День">
+            <input type="text" id="p-inpMon" placeholder="Месяц">
+            <input type="text" id="p-inpY" placeholder="Год">
+            <input type = "button" id = "p-inpBtn"value = "Продолжить" >
           </div>
         </div>`)
   const app = createElem(`
