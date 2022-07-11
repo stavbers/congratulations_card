@@ -56,6 +56,7 @@ li {
   background: linear-gradient(to bottom right, #DA505C, #F1B083);
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 
 .popup {
@@ -183,10 +184,11 @@ li {
 
 .saved {
   position: absolute;
-  top: 5px;
+  bottom: 5px;
   right: 10px;
   color: rgba(0, 0, 0, 0.735);
   display: none;
+  /* display: block; */
 }
 
 #felic-text {
@@ -194,4 +196,9 @@ li {
   max-width: 1000px;
   min-height: 100px;
   max-height: 160px;
+}
+#felic-text:focus {
+  outline: none !important;
+  border:1px solid red;
+  box-shadow: 0 0 10px #719ECE;
 }

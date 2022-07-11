@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     html.textContent = `Вам исполнится ${age} ${num_word(age, ['год', 'года', 'лет'])}`
     if (month < new Date().getMonth()) dobnow = new Date(today.getFullYear() + 1, dob.getMonth(), dob.getDate())
     setInterval(countTimer.bind(dobnow), 1000)
+    congratulation()
     addStorage(age, 'age')
     addStorage(dobnow, 'dobnow')
   }
@@ -121,6 +122,15 @@ document.addEventListener('DOMContentLoaded', () => {
     cases = [2, 0, 1, 1, 1, 2];
     return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
   }
+  function congratulation() {
+    const congrInp = document.querySelector('#felic-text')
+    congrInp.addEventListener('input',(e)=> {
+      addStorage(e.target.value,'textArea')
+    })
+    congrInp.addEventListener('blur', e=> {
+      fnSavedLabel()
+    })
+  }
 
   function addStorage(id, datte){
     localStorage.setItem(datte, id)
@@ -134,5 +144,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if(localStorage.getItem('dobnow')) {
       setInterval(countTimer.bind(localStorage.getItem('dobnow')), 1000)
     } 
+     if(localStorage.getItem('textArea')) {
+      document.querySelector('#felic-text').value = localStorage.getItem('textArea')
+    } 
+  }
+  function fnSavedLabel(){
+   const s = document.querySelector('.saved')
+   s.style.display = 'block'
+   setTimeout(()=> {
+    s.style.display = 'none'
+   },2000)
   }
 })
