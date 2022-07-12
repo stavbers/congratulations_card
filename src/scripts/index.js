@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     month.value = ''
     year.value = ''
   }
-
+  setInterval(()=> {
+    document.querySelector('.settings__gear-img').classList.toggle('gear-rotate')
+  }, 2000)
+  
   const checkInputValue = (day, month, year) => {
     (checkInpDay(day.value) && checkInpMonth(month.value) && checkInpYear(year.value)) ? [removeElem([document.querySelector('#overlay'), document.querySelector('.popup')]), addElem(app, body.querySelector('#App')), getAge(day.value, month.value, year.value)] : [clearInp(day, month, year), false]
   }
@@ -101,10 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const secondsOut = document.querySelector('.countdown-wrp__seconds')
     let milsTime = Math.abs(new Date() - new Date(this))
     let month = milsTime > 0 ? Math.round(milsTime / 1000 / 60 / 60 / 24 / 30) : 0
+    let days = milsTime > 0 ? Math.round(milsTime / 1000 / 60 / 60) %  24 : 0
     let week = milsTime > 0 ? (milsTime / 1000 / 60 / 60 / 24 / 7) : 0
     let weekend = milsTime > 0 ? (milsTime / 1000 / 60 / 60 / 24 / 7 * 2) : 0
     let workDay = milsTime > 0 ? (milsTime / 1000 / 60 / 60 / 24 / 7 * 5) : 0
-    let days = milsTime > 0 ? Math.round(milsTime / 1000 / 60 / 60 / 24) : 0
     let hours = milsTime > 0 ? Math.floor(milsTime / 1000 / 60 / 60) % 24 : 0
     let minutes = milsTime > 0 ? Math.floor(milsTime / 1000 / 60) % 60 : 0
     let seconds = milsTime > 0 ? Math.floor(milsTime / 1000) % 60 : 0
